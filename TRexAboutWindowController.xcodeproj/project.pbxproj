@@ -7,44 +7,131 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63FB01C81B63AAB3001AE3EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB01C71B63AAB3001AE3EF /* AppDelegate.swift */; };
+		07B43CF31E03F9E0006D0A93 /* TRexAboutWindowController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */; };
+		07B43CFA1E03F9E0006D0A93 /* TRexAboutWindowControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B43CF91E03F9E0006D0A93 /* TRexAboutWindowControllerTests.swift */; };
+		07B43CFF1E03F9E0006D0A93 /* TRexAboutWindowController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */; };
+		07B43D001E03F9E0006D0A93 /* TRexAboutWindowController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07B43D241E03FAC9006D0A93 /* PFAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B43D1F1E03FAC9006D0A93 /* PFAboutWindow.xib */; };
+		07B43D251E03FAC9006D0A93 /* TRexAboutWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B43D201E03FAC9006D0A93 /* TRexAboutWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07B43D261E03FAC9006D0A93 /* TRexAboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B43D211E03FAC9006D0A93 /* TRexAboutWindowController.swift */; };
+		07B43D2C1E03FC2D006D0A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B43D2B1E03FC2D006D0A93 /* AppDelegate.swift */; };
 		63FB01CA1B63AAB3001AE3EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB01C91B63AAB3001AE3EF /* ViewController.swift */; };
 		63FB01CC1B63AAB3001AE3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FB01CB1B63AAB3001AE3EF /* Assets.xcassets */; };
 		63FB01CF1B63AAB3001AE3EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63FB01CD1B63AAB3001AE3EF /* Main.storyboard */; };
-		63FB01D71B63AABB001AE3EF /* TRexAboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB01D61B63AABB001AE3EF /* TRexAboutWindowController.swift */; };
-		63FB01D91B63AAC7001AE3EF /* PFAboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63FB01D81B63AAC7001AE3EF /* PFAboutWindow.xib */; };
 		63FB01DC1B63AACC001AE3EF /* EULA.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 63FB01DA1B63AACC001AE3EF /* EULA.rtf */; };
 		63FB01DD1B63AACC001AE3EF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 63FB01DB1B63AACC001AE3EF /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		07B43CF41E03F9E0006D0A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FB01BC1B63AAB3001AE3EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B43CE91E03F9E0006D0A93;
+			remoteInfo = TRexAboutWindowController;
+		};
+		07B43CF61E03F9E0006D0A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FB01BC1B63AAB3001AE3EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63FB01C31B63AAB3001AE3EF;
+			remoteInfo = TRexAboutWindowControllerSample;
+		};
+		07B43CFD1E03F9E0006D0A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FB01BC1B63AAB3001AE3EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B43CE91E03F9E0006D0A93;
+			remoteInfo = TRexAboutWindowController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		07B43D041E03F9E0006D0A93 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				07B43D001E03F9E0006D0A93 /* TRexAboutWindowController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		63FB01C41B63AAB3001AE3EF /* TRexAboutWindowController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRexAboutWindowController.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63FB01C71B63AAB3001AE3EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TRexAboutWindowController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B43CF21E03F9E0006D0A93 /* TRexAboutWindowControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRexAboutWindowControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B43CF91E03F9E0006D0A93 /* TRexAboutWindowControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRexAboutWindowControllerTests.swift; sourceTree = "<group>"; };
+		07B43CFB1E03F9E0006D0A93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07B43D1E1E03FAC9006D0A93 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07B43D1F1E03FAC9006D0A93 /* PFAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFAboutWindow.xib; sourceTree = "<group>"; };
+		07B43D201E03FAC9006D0A93 /* TRexAboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRexAboutWindowController.h; sourceTree = "<group>"; };
+		07B43D211E03FAC9006D0A93 /* TRexAboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRexAboutWindowController.swift; sourceTree = "<group>"; };
+		07B43D2B1E03FC2D006D0A93 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		63FB01C41B63AAB3001AE3EF /* TRexAboutWindowControllerSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRexAboutWindowControllerSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FB01C91B63AAB3001AE3EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63FB01CB1B63AAB3001AE3EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63FB01CE1B63AAB3001AE3EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63FB01D01B63AAB3001AE3EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63FB01D61B63AABB001AE3EF /* TRexAboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRexAboutWindowController.swift; sourceTree = "<group>"; };
-		63FB01D81B63AAC7001AE3EF /* PFAboutWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFAboutWindow.xib; sourceTree = "<group>"; };
 		63FB01DA1B63AACC001AE3EF /* EULA.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = EULA.rtf; sourceTree = "<group>"; };
 		63FB01DB1B63AACC001AE3EF /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		63FB01C11B63AAB3001AE3EF /* Frameworks */ = {
+		07B43CE61E03F9E0006D0A93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		07B43CEF1E03F9E0006D0A93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43CF31E03F9E0006D0A93 /* TRexAboutWindowController.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63FB01C11B63AAB3001AE3EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43CFF1E03F9E0006D0A93 /* TRexAboutWindowController.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B43CF81E03F9E0006D0A93 /* TRexAboutWindowControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				07B43CF91E03F9E0006D0A93 /* TRexAboutWindowControllerTests.swift */,
+				07B43CFB1E03F9E0006D0A93 /* Info.plist */,
+			);
+			path = TRexAboutWindowControllerTests;
+			sourceTree = "<group>";
+		};
+		07B43D1B1E03FAC9006D0A93 /* TRexAboutWindowController */ = {
+			isa = PBXGroup;
+			children = (
+				07B43D1E1E03FAC9006D0A93 /* Info.plist */,
+				07B43D1F1E03FAC9006D0A93 /* PFAboutWindow.xib */,
+				07B43D201E03FAC9006D0A93 /* TRexAboutWindowController.h */,
+				07B43D211E03FAC9006D0A93 /* TRexAboutWindowController.swift */,
+			);
+			path = TRexAboutWindowController;
+			sourceTree = "<group>";
+		};
 		63FB01BB1B63AAB3001AE3EF = {
 			isa = PBXGroup;
 			children = (
-				63FB01C61B63AAB3001AE3EF /* TRexAboutWindowController */,
+				07B43D1B1E03FAC9006D0A93 /* TRexAboutWindowController */,
+				07B43CF81E03F9E0006D0A93 /* TRexAboutWindowControllerTests */,
+				63FB01C61B63AAB3001AE3EF /* TRexAboutWindowControllerSample */,
 				63FB01C51B63AAB3001AE3EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,37 +139,49 @@
 		63FB01C51B63AAB3001AE3EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63FB01C41B63AAB3001AE3EF /* TRexAboutWindowController.app */,
+				63FB01C41B63AAB3001AE3EF /* TRexAboutWindowControllerSample.app */,
+				07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */,
+				07B43CF21E03F9E0006D0A93 /* TRexAboutWindowControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		63FB01C61B63AAB3001AE3EF /* TRexAboutWindowController */ = {
+		63FB01C61B63AAB3001AE3EF /* TRexAboutWindowControllerSample */ = {
 			isa = PBXGroup;
 			children = (
-				63FB01C71B63AAB3001AE3EF /* AppDelegate.swift */,
+				07B43D2B1E03FC2D006D0A93 /* AppDelegate.swift */,
 				63FB01C91B63AAB3001AE3EF /* ViewController.swift */,
-				63FB01D61B63AABB001AE3EF /* TRexAboutWindowController.swift */,
 				63FB01CB1B63AAB3001AE3EF /* Assets.xcassets */,
 				63FB01CD1B63AAB3001AE3EF /* Main.storyboard */,
-				63FB01D81B63AAC7001AE3EF /* PFAboutWindow.xib */,
 				63FB01DA1B63AACC001AE3EF /* EULA.rtf */,
 				63FB01DB1B63AACC001AE3EF /* Credits.rtf */,
 				63FB01D01B63AAB3001AE3EF /* Info.plist */,
 			);
-			path = TRexAboutWindowController;
+			path = TRexAboutWindowControllerSample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		07B43CE71E03F9E0006D0A93 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43D251E03FAC9006D0A93 /* TRexAboutWindowController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		63FB01C31B63AAB3001AE3EF /* TRexAboutWindowController */ = {
+		07B43CE91E03F9E0006D0A93 /* TRexAboutWindowController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63FB01D31B63AAB3001AE3EF /* Build configuration list for PBXNativeTarget "TRexAboutWindowController" */;
+			buildConfigurationList = 07B43D011E03F9E0006D0A93 /* Build configuration list for PBXNativeTarget "TRexAboutWindowController" */;
 			buildPhases = (
-				63FB01C01B63AAB3001AE3EF /* Sources */,
-				63FB01C11B63AAB3001AE3EF /* Frameworks */,
-				63FB01C21B63AAB3001AE3EF /* Resources */,
+				07B43CE51E03F9E0006D0A93 /* Sources */,
+				07B43CE61E03F9E0006D0A93 /* Frameworks */,
+				07B43CE71E03F9E0006D0A93 /* Headers */,
+				07B43CE81E03F9E0006D0A93 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -90,7 +189,45 @@
 			);
 			name = TRexAboutWindowController;
 			productName = TRexAboutWindowController;
-			productReference = 63FB01C41B63AAB3001AE3EF /* TRexAboutWindowController.app */;
+			productReference = 07B43CEA1E03F9E0006D0A93 /* TRexAboutWindowController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		07B43CF11E03F9E0006D0A93 /* TRexAboutWindowControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07B43D051E03F9E0006D0A93 /* Build configuration list for PBXNativeTarget "TRexAboutWindowControllerTests" */;
+			buildPhases = (
+				07B43CEE1E03F9E0006D0A93 /* Sources */,
+				07B43CEF1E03F9E0006D0A93 /* Frameworks */,
+				07B43CF01E03F9E0006D0A93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07B43CF51E03F9E0006D0A93 /* PBXTargetDependency */,
+				07B43CF71E03F9E0006D0A93 /* PBXTargetDependency */,
+			);
+			name = TRexAboutWindowControllerTests;
+			productName = TRexAboutWindowControllerTests;
+			productReference = 07B43CF21E03F9E0006D0A93 /* TRexAboutWindowControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63FB01C31B63AAB3001AE3EF /* TRexAboutWindowControllerSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63FB01D31B63AAB3001AE3EF /* Build configuration list for PBXNativeTarget "TRexAboutWindowControllerSample" */;
+			buildPhases = (
+				63FB01C01B63AAB3001AE3EF /* Sources */,
+				63FB01C11B63AAB3001AE3EF /* Frameworks */,
+				63FB01C21B63AAB3001AE3EF /* Resources */,
+				07B43D041E03F9E0006D0A93 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07B43CFE1E03F9E0006D0A93 /* PBXTargetDependency */,
+			);
+			name = TRexAboutWindowControllerSample;
+			productName = TRexAboutWindowController;
+			productReference = 63FB01C41B63AAB3001AE3EF /* TRexAboutWindowControllerSample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,9 +236,19 @@
 		63FB01BC1B63AAB3001AE3EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "David Ehlen";
 				TargetAttributes = {
+					07B43CE91E03F9E0006D0A93 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+					07B43CF11E03F9E0006D0A93 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 63FB01C31B63AAB3001AE3EF;
+					};
 					63FB01C31B63AAB3001AE3EF = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 0810;
@@ -121,12 +268,29 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				63FB01C31B63AAB3001AE3EF /* TRexAboutWindowController */,
+				07B43CE91E03F9E0006D0A93 /* TRexAboutWindowController */,
+				07B43CF11E03F9E0006D0A93 /* TRexAboutWindowControllerTests */,
+				63FB01C31B63AAB3001AE3EF /* TRexAboutWindowControllerSample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		07B43CE81E03F9E0006D0A93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43D241E03FAC9006D0A93 /* PFAboutWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07B43CF01E03F9E0006D0A93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63FB01C21B63AAB3001AE3EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,7 +298,6 @@
 				63FB01DD1B63AACC001AE3EF /* Credits.rtf in Resources */,
 				63FB01CC1B63AAB3001AE3EF /* Assets.xcassets in Resources */,
 				63FB01DC1B63AACC001AE3EF /* EULA.rtf in Resources */,
-				63FB01D91B63AAC7001AE3EF /* PFAboutWindow.xib in Resources */,
 				63FB01CF1B63AAB3001AE3EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,17 +305,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		07B43CE51E03F9E0006D0A93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43D261E03FAC9006D0A93 /* TRexAboutWindowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07B43CEE1E03F9E0006D0A93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B43CFA1E03F9E0006D0A93 /* TRexAboutWindowControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63FB01C01B63AAB3001AE3EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63FB01D71B63AABB001AE3EF /* TRexAboutWindowController.swift in Sources */,
+				07B43D2C1E03FC2D006D0A93 /* AppDelegate.swift in Sources */,
 				63FB01CA1B63AAB3001AE3EF /* ViewController.swift in Sources */,
-				63FB01C81B63AAB3001AE3EF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07B43CF51E03F9E0006D0A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07B43CE91E03F9E0006D0A93 /* TRexAboutWindowController */;
+			targetProxy = 07B43CF41E03F9E0006D0A93 /* PBXContainerItemProxy */;
+		};
+		07B43CF71E03F9E0006D0A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63FB01C31B63AAB3001AE3EF /* TRexAboutWindowControllerSample */;
+			targetProxy = 07B43CF61E03F9E0006D0A93 /* PBXContainerItemProxy */;
+		};
+		07B43CFE1E03F9E0006D0A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07B43CE91E03F9E0006D0A93 /* TRexAboutWindowController */;
+			targetProxy = 07B43CFD1E03F9E0006D0A93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		63FB01CD1B63AAB3001AE3EF /* Main.storyboard */ = {
@@ -166,6 +362,90 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		07B43D021E03F9E0006D0A93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = TRexAboutWindowController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		07B43D031E03F9E0006D0A93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = TRexAboutWindowController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		07B43D061E03F9E0006D0A93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TRexAboutWindowControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController.TRexAboutWindowControllerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRexAboutWindowControllerSample.app/Contents/MacOS/TRexAboutWindowControllerSample";
+			};
+			name = Debug;
+		};
+		07B43D071E03F9E0006D0A93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TRexAboutWindowControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController.TRexAboutWindowControllerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRexAboutWindowControllerSample.app/Contents/MacOS/TRexAboutWindowControllerSample";
+			};
+			name = Release;
+		};
 		63FB01D11B63AAB3001AE3EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -185,7 +465,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -209,6 +488,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -231,7 +511,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -248,38 +527,57 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		63FB01D41B63AAB3001AE3EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TRexAboutWindowController/Info.plist;
+				INFOPLIST_FILE = TRexAboutWindowControllerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowControllerSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
 		63FB01D51B63AAB3001AE3EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TRexAboutWindowController/Info.plist;
+				INFOPLIST_FILE = TRexAboutWindowControllerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.david-ehlen.TRexAboutWindowControllerSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07B43D011E03F9E0006D0A93 /* Build configuration list for PBXNativeTarget "TRexAboutWindowController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B43D021E03F9E0006D0A93 /* Debug */,
+				07B43D031E03F9E0006D0A93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07B43D051E03F9E0006D0A93 /* Build configuration list for PBXNativeTarget "TRexAboutWindowControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B43D061E03F9E0006D0A93 /* Debug */,
+				07B43D071E03F9E0006D0A93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63FB01BF1B63AAB3001AE3EF /* Build configuration list for PBXProject "TRexAboutWindowController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -289,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63FB01D31B63AAB3001AE3EF /* Build configuration list for PBXNativeTarget "TRexAboutWindowController" */ = {
+		63FB01D31B63AAB3001AE3EF /* Build configuration list for PBXNativeTarget "TRexAboutWindowControllerSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				63FB01D41B63AAB3001AE3EF /* Debug */,

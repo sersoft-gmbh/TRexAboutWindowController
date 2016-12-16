@@ -8,162 +8,148 @@
 
 import Cocoa
 
-open class TRexAboutWindowController : NSWindowController {
-    open var appName : String = ""
-    open var appVersion : String = ""
-    open var appCopyright : NSAttributedString
-    open var appCredits : NSAttributedString
-    open var appEULA : NSAttributedString
-    open var appURL : URL?
-    open var textShown : NSAttributedString
-    open var windowState : Int = 0
-    open var windowShouldHaveShadow: Bool = true
+open class TRexAboutWindowController: NSWindowController {
+    open var appName = ""
+    open var appVersion = ""
     
-    @IBOutlet var infoView: NSView!
-    @IBOutlet var textField: NSTextView!
-    @IBOutlet var visitWebsiteButton: NSButton!
-    @IBOutlet var EULAButton: NSButton!
-    @IBOutlet var creditsButton: NSButton!
-    @IBOutlet var versionLabel: NSTextField!
+    open var appCopyright = NSAttributedString()
+    open var appCredits = NSAttributedString()
+    open var appEULA = NSAttributedString()
     
-    override init(window: NSWindow?) {
-        self.appCopyright = NSAttributedString()
-        self.appCredits = NSAttributedString()
-        self.appEULA = NSAttributedString()
-        
-        self.textShown = NSAttributedString()
-        
-        super.init(window: window)
+    open var appURL: URL?
+    
+    open var windowShouldHaveShadow: Bool = true {
+        didSet {
+            window?.hasShadow = windowShouldHaveShadow
+        }
     }
     
-    required public init?(coder: NSCoder) {
-        self.appCopyright = NSAttributedString()
-        self.appCredits = NSAttributedString()
-        self.appEULA = NSAttributedString()
-        
-        self.textShown = NSAttributedString()
-        
-        super.init(coder: coder)
+    @IBOutlet public var infoView: NSView!
+    @IBOutlet public var textField: NSTextView!
+    @IBOutlet public var visitWebsiteButton: NSButton!
+    @IBOutlet public var EULAButton: NSButton!
+    @IBOutlet public var creditsButton: NSButton!
+    @IBOutlet public var versionLabel: NSTextField!
+    
+    public convenience init() {
+        self.init(windowNibName: "PFAboutWindow")
     }
     
     override open func windowDidLoad() {
         super.windowDidLoad()
-        self.windowState = 0
-        self.infoView.wantsLayer = true
-        self.infoView.layer!.cornerRadius = 10.0
-        self.infoView.layer!.backgroundColor = NSColor.white.cgColor
-        self.window?.backgroundColor = NSColor.white
-        self.window?.hasShadow = self.windowShouldHaveShadow
         
-        if self.appName.characters.count <= 0 {
-            self.appName = valueFromInfoDict("CFBundleName")
+        infoView.wantsLayer = true
+        infoView.layer?.cornerRadius = 10.0
+        infoView.layer?.backgroundColor = NSColor.white.cgColor
+        
+        window?.backgroundColor = NSColor.white
+        window?.hasShadow = windowShouldHaveShadow
+        
+        if appName.isEmpty {
+            appName = valueFromInfoDict("CFBundleName")
         }
         
-        if self.appVersion.characters.count <= 0 {
+        if appVersion.isEmpty {
             let version = valueFromInfoDict("CFBundleVersion")
             let shortVersion = valueFromInfoDict("CFBundleShortVersionString")
-            self.appVersion = "Version \(shortVersion) (Build \(version))"
-            versionLabel.stringValue = self.appVersion
+            appVersion = "Version \(shortVersion) (Build \(version))"
+            versionLabel.stringValue = appVersion
         }
         
-        if self.appCopyright.string.characters.count <= 0 {
-            if floor(NSAppKitVersionNumber) <= Double(NSAppKitVersionNumber10_9) {
-                let font:NSFont? = NSFont(name: "HelveticaNeue", size: 11.0)
-                let color:NSColor? = NSColor.lightGray
-                let attribs:[String:AnyObject] = [NSForegroundColorAttributeName:color!,
-                                                  NSFontAttributeName:font!]
-                self.appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
+        if appCopyright.string.isEmpty {
+            let color: NSColor
+            if #available(macOS 10.10, *) {
+                color = NSColor.tertiaryLabelColor
+            } else {
+                color = NSColor.lightGray
             }
-            else {
-                let font:NSFont? = NSFont(name: "HelveticaNeue", size: 11.0)
-                let color:NSColor? = NSColor.tertiaryLabelColor
-                let attribs:[String:AnyObject] = [NSForegroundColorAttributeName:color!,
-                                                  NSFontAttributeName:font!]
-                self.appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
-            }
+            let font = NSFont(name: "HelveticaNeue", size: 11.0) ?? NSFont.systemFont(ofSize: 11)
+            let attribs: [String: Any] = [NSForegroundColorAttributeName: color,
+                                          NSFontAttributeName: font]
+            appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
         }
         
-        if self.appCredits.string.characters.count <= 0 {
-            if let creditsRTF = Bundle.main.path(forResource: "Credits", ofType: "rtf") {
-                self.appCredits = NSAttributedString(path: creditsRTF, documentAttributes: nil)!
-            }
-            else {
-                self.creditsButton.isHidden = true
-                print("Credits not found in bundle. Hiding Credits Button.")
-            }
-        }
-        
-        if self.appEULA.string.characters.count <= 0 {
-            if let eulaRTF = Bundle.main.path(forResource: "EULA", ofType: "rtf") {
-                self.appEULA = NSAttributedString(path: eulaRTF, documentAttributes: nil)!
-            }
-            else {
-                self.EULAButton.isHidden = true
-                print("EULA not found in bundle. Hiding EULA Button.")
+        if appCredits.string.isEmpty {
+            if let creditsRTF = Bundle.main.path(forResource: "Credits", ofType: "rtf"),
+                let credits = NSAttributedString(path: creditsRTF, documentAttributes: nil) {
+                appCredits = credits
+            } else {
+                creditsButton.isHidden = true
+                #if DEBUG
+                    print("Credits not found in bundle or file is invalid. Hiding Credits Button.")
+                #endif
             }
         }
         
-        self.textField.textStorage!.setAttributedString(self.appCopyright)
-        self.creditsButton.title = "Credits"
-        self.EULAButton.title = "EULA"
+        if appEULA.string.isEmpty {
+            if let eulaRTF = Bundle.main.path(forResource: "EULA", ofType: "rtf"),
+                let eula = NSAttributedString(path: eulaRTF, documentAttributes: nil) {
+                appEULA = eula
+            } else {
+                EULAButton.isHidden = true
+                #if DEBUG
+                    print("EULA not found in bundle or file is invalid. Hiding EULA Button.")
+                #endif
+            }
+        }
+        
+        textField.textStorage?.setAttributedString(appCopyright)
+        creditsButton.title = NSLocalizedString("Credits", comment: "TRexAboutWindowController")
+        EULAButton.title = NSLocalizedString("EULA", comment: "TRexAboutWindowController")
     }
     
-    @IBAction func visitWebsite(_ sender: AnyObject) {
-        guard let url = self.appURL else { return }
+    @IBAction func visitWebsite(_ sender: Any) {
+        guard let url = appURL else { return }
         
         NSWorkspace.shared().open(url)
     }
     
-    @IBAction func showCredits(_ sender: AnyObject) {
-        if self.windowState != 1 {
-            let amountToIncreaseHeight:CGFloat  = 100
-            var oldFrame:NSRect = self.window!.frame
-            oldFrame.size.height += amountToIncreaseHeight
-            oldFrame.origin.y -= amountToIncreaseHeight
-            self.window!.setFrame(oldFrame,display:true, animate:true)
-            self.windowState = 1
-        }
-        self.textField.textStorage!.setAttributedString(self.appCredits)
+    @IBAction func showCredits(_ sender: Any) {
+        expandWindow()
+        textField.textStorage?.setAttributedString(appCredits)
     }
     
-    @IBAction func showEULA(_ sender: AnyObject) {
-        if self.windowState != 1 {
-            let amountToIncreaseHeight:CGFloat  = 100
-            var oldFrame:NSRect = self.window!.frame
-            oldFrame.size.height += amountToIncreaseHeight
-            oldFrame.origin.y -= amountToIncreaseHeight
-            self.window!.setFrame(oldFrame,display:true, animate:true)
-            self.windowState = 1
-        }
-        self.textField.textStorage!.setAttributedString(self.appEULA)
+    @IBAction func showEULA(_ sender: Any) {
+        expandWindow()
+        textField.textStorage?.setAttributedString(appEULA)
     }
     
-    @IBAction func showCopyright(_ sender: AnyObject) {
-        if self.windowState != 0 {
-            let amountToIncreaseHeight:CGFloat  = -100
-            var oldFrame:NSRect = self.window!.frame
-            oldFrame.size.height += amountToIncreaseHeight
-            oldFrame.origin.y -= amountToIncreaseHeight
-            self.window!.setFrame(oldFrame,display:true, animate:true)
-            self.windowState = 0
-        }
-        
-        self.textField.textStorage!.setAttributedString(self.appCopyright)
+    @IBAction func showCopyright(_ sender: Any) {
+        collapseWindow()
+        textField.textStorage?.setAttributedString(appCopyright)
     }
     
-    open func windowShouldClose(_ sender: AnyObject) -> Bool {
-        self.showCopyright(sender)
+    open func windowShouldClose(_ sender: Any) -> Bool {
+        showCopyright(sender)
         return true
     }
     
-    override open func showWindow(_ sender: Any?) {
-        super.showWindow(sender)
+    //Private
+    private var isWindowExpanded = false
+    
+    private func valueFromInfoDict(_ string: String) -> String {
+        let dictionary = Bundle.main.infoDictionary
+        let result = dictionary?[string] as? String
+        return result ?? String()
     }
     
-    //Private
-    fileprivate func valueFromInfoDict(_ string:String) -> String {
-        let dictionary = Bundle.main.infoDictionary!
-        let result = dictionary[string] as! String
-        return result
+    private func expandWindow() {
+        guard !isWindowExpanded else { return }
+        changeWindowHeight(by: 100)
+        isWindowExpanded = true
+    }
+    
+    private func collapseWindow() {
+        guard isWindowExpanded else { return }
+        changeWindowHeight(by: -100)
+        isWindowExpanded = false
+    }
+    
+    private func changeWindowHeight(by difference: CGFloat, animated: Bool = true) {
+        guard let window = window else { return }
+        var oldFrame = window.frame
+        oldFrame.size.height += difference
+        oldFrame.origin.y -= difference
+        window.setFrame(oldFrame, display: true, animate: animated)
     }
 }
