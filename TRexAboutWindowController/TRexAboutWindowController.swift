@@ -6,30 +6,29 @@
 //  Copyright © 2015 David Ehlen. All rights reserved.
 //
 
+import Foundation
 import Cocoa
 
-open class TRexAboutWindowController: NSWindowController {
-    open var appName = ""
-    open var appVersion = ""
+open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
+    dynamic public var appName = ""
+    dynamic public var appVersion = ""
     
-    open var appCopyright = NSAttributedString()
-    open var appCredits = NSAttributedString()
-    open var appEULA = NSAttributedString()
+    dynamic public var appCopyright: NSAttributedString? = nil
+    dynamic public var appEULA: NSAttributedString? = nil
+    dynamic public var appCredits: NSAttributedString? = nil
     
     open var appURL: URL?
     
-    open var windowShouldHaveShadow: Bool = true {
-        didSet {
-            window?.hasShadow = windowShouldHaveShadow
-        }
-    }
-    
-    @IBOutlet public var infoView: NSView!
-    @IBOutlet public var textField: NSTextView!
+    @IBOutlet public var contentView: NSView!
     @IBOutlet public var visitWebsiteButton: NSButton!
-    @IBOutlet public var EULAButton: NSButton!
-    @IBOutlet public var creditsButton: NSButton!
+    @IBOutlet public var appNameLabel: NSTextField!
     @IBOutlet public var versionLabel: NSTextField!
+    @IBOutlet public var textView: NSTextView!
+    @IBOutlet public var copyrightButton: NSButton!
+    @IBOutlet public var eulaButton: NSButton!
+    @IBOutlet public var creditsButton: NSButton!
+    
+    dynamic internal var currentText: NSAttributedString?
     
     public convenience init() {
         self.init(windowNibName: "PFAboutWindow")
@@ -38,12 +37,9 @@ open class TRexAboutWindowController: NSWindowController {
     override open func windowDidLoad() {
         super.windowDidLoad()
         
-        infoView.wantsLayer = true
-        infoView.layer?.cornerRadius = 10.0
-        infoView.layer?.backgroundColor = NSColor.white.cgColor
-        
         window?.backgroundColor = NSColor.white
-        window?.hasShadow = windowShouldHaveShadow
+        contentView.layer?.cornerRadius = 10.0
+        contentView.layer?.backgroundColor = NSColor.white.cgColor
         
         if appName.isEmpty {
             appName = valueFromInfoDict("CFBundleName")
@@ -53,75 +49,61 @@ open class TRexAboutWindowController: NSWindowController {
             let version = valueFromInfoDict("CFBundleVersion")
             let shortVersion = valueFromInfoDict("CFBundleShortVersionString")
             appVersion = "Version \(shortVersion) (Build \(version))"
-            versionLabel.stringValue = appVersion
         }
         
-        if appCopyright.string.isEmpty {
+        if appCopyright == nil {
             let color: NSColor
             if #available(macOS 10.10, *) {
                 color = NSColor.tertiaryLabelColor
             } else {
                 color = NSColor.lightGray
             }
-            let font = NSFont(name: "HelveticaNeue", size: 11.0) ?? NSFont.systemFont(ofSize: 11)
+            let font = NSFont.systemFont(ofSize: 11)
             let attribs: [String: Any] = [NSForegroundColorAttributeName: color,
                                           NSFontAttributeName: font]
             appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
         }
         
-        if appCredits.string.isEmpty {
-            if let creditsRTF = Bundle.main.path(forResource: "Credits", ofType: "rtf"),
-                let credits = NSAttributedString(path: creditsRTF, documentAttributes: nil) {
-                appCredits = credits
-            } else {
-                creditsButton.isHidden = true
-                #if DEBUG
-                    print("Credits not found in bundle or file is invalid. Hiding Credits Button.")
-                #endif
-            }
+        if appCredits == nil {
+            let creditsRTF = Bundle.main.path(forResource: "Credits", ofType: "rtf")
+            appCredits = creditsRTF.flatMap { NSAttributedString(path: $0, documentAttributes: nil) }
         }
         
-        if appEULA.string.isEmpty {
-            if let eulaRTF = Bundle.main.path(forResource: "EULA", ofType: "rtf"),
-                let eula = NSAttributedString(path: eulaRTF, documentAttributes: nil) {
-                appEULA = eula
-            } else {
-                EULAButton.isHidden = true
-                #if DEBUG
-                    print("EULA not found in bundle or file is invalid. Hiding EULA Button.")
-                #endif
-            }
+        if appEULA == nil {
+            let eulaRTF = Bundle.main.path(forResource: "EULA", ofType: "rtf")
+            appEULA = eulaRTF.flatMap { NSAttributedString(path: $0, documentAttributes: nil) }
         }
         
-        textField.textStorage?.setAttributedString(appCopyright)
+        currentText = appCopyright
+        
+        copyrightButton.title = NSLocalizedString("Copyright", comment: "TRexAboutWindowController")
+        eulaButton.title = NSLocalizedString("EULA", comment: "TRexAboutWindowController")
         creditsButton.title = NSLocalizedString("Credits", comment: "TRexAboutWindowController")
-        EULAButton.title = NSLocalizedString("EULA", comment: "TRexAboutWindowController")
     }
     
+    open func windowWillClose(_ notification: Notification) {
+        showCopyright(notification)
+    }
+    
+    // Actions
     @IBAction func visitWebsite(_ sender: Any) {
         guard let url = appURL else { return }
-        
         NSWorkspace.shared().open(url)
-    }
-    
-    @IBAction func showCredits(_ sender: Any) {
-        expandWindow()
-        textField.textStorage?.setAttributedString(appCredits)
-    }
-    
-    @IBAction func showEULA(_ sender: Any) {
-        expandWindow()
-        textField.textStorage?.setAttributedString(appEULA)
     }
     
     @IBAction func showCopyright(_ sender: Any) {
         collapseWindow()
-        textField.textStorage?.setAttributedString(appCopyright)
+        currentText = appCopyright
     }
     
-    open func windowShouldClose(_ sender: Any) -> Bool {
-        showCopyright(sender)
-        return true
+    @IBAction func showEULA(_ sender: Any) {
+        expandWindow()
+        currentText = appEULA
+    }
+    
+    @IBAction func showCredits(_ sender: Any) {
+        expandWindow()
+        currentText = appCredits
     }
     
     //Private
