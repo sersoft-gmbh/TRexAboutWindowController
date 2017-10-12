@@ -12,7 +12,9 @@ import Cocoa
 open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     @objc dynamic public var appName = ""
     @objc dynamic public var appVersion = ""
-    
+
+    @objc dynamic public var supportEmail: String?
+
     @objc dynamic public var appCopyright: NSAttributedString? = nil
     @objc dynamic public var appEULA: NSAttributedString? = nil
     @objc dynamic public var appCredits: NSAttributedString? = nil
@@ -21,6 +23,7 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     
     @IBOutlet public var contentView: NSView!
     @IBOutlet public var visitWebsiteButton: NSButton!
+    @IBOutlet public var supportButton: NSButton!
     @IBOutlet public var appNameLabel: NSTextField!
     @IBOutlet public var versionLabel: NSTextField!
     @IBOutlet public var textView: NSTextView!
@@ -75,7 +78,8 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
         }
         
         currentText = appCopyright
-        
+
+        supportButton.title = NSLocalizedString("Support", comment: "TRexAboutWindowController")
         copyrightButton.title = NSLocalizedString("Copyright", comment: "TRexAboutWindowController")
         eulaButton.title = NSLocalizedString("EULA", comment: "TRexAboutWindowController")
         creditsButton.title = NSLocalizedString("Credits", comment: "TRexAboutWindowController")
@@ -90,7 +94,12 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
         guard let url = appURL else { return }
         NSWorkspace.shared.open(url)
     }
-    
+
+    @IBAction func sendSupportMail(_ sender: Any) {
+        guard let supportMail = supportEmail, let url = URL(string: "mailto:\(supportMail)") else { return }
+        NSWorkspace.shared.open(url)
+    }
+
     @IBAction func showCopyright(_ sender: Any) {
         collapseWindow()
         currentText = appCopyright
