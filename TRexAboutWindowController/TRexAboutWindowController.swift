@@ -10,12 +10,12 @@ import Foundation
 import Cocoa
 
 open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
-    dynamic public var appName = ""
-    dynamic public var appVersion = ""
+    @objc dynamic public var appName = ""
+    @objc dynamic public var appVersion = ""
     
-    dynamic public var appCopyright: NSAttributedString? = nil
-    dynamic public var appEULA: NSAttributedString? = nil
-    dynamic public var appCredits: NSAttributedString? = nil
+    @objc dynamic public var appCopyright: NSAttributedString? = nil
+    @objc dynamic public var appEULA: NSAttributedString? = nil
+    @objc dynamic public var appCredits: NSAttributedString? = nil
     
     open var appURL: URL?
     
@@ -28,10 +28,10 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     @IBOutlet public var eulaButton: NSButton!
     @IBOutlet public var creditsButton: NSButton!
     
-    dynamic internal var currentText: NSAttributedString?
+    @objc dynamic internal var currentText: NSAttributedString?
     
     public convenience init() {
-        self.init(windowNibName: "PFAboutWindow")
+        self.init(windowNibName: .init(rawValue: "PFAboutWindow"))
     }
     
     override open func windowDidLoad() {
@@ -59,8 +59,8 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
                 color = NSColor.lightGray
             }
             let font = NSFont.systemFont(ofSize: 11)
-            let attribs: [String: Any] = [NSForegroundColorAttributeName: color,
-                                          NSFontAttributeName: font]
+            let attribs: [NSAttributedStringKey: Any] = [.foregroundColor: color,
+                                                         .font: font]
             appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
         }
         
@@ -88,7 +88,7 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     // Actions
     @IBAction func visitWebsite(_ sender: Any) {
         guard let url = appURL else { return }
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
     
     @IBAction func showCopyright(_ sender: Any) {
