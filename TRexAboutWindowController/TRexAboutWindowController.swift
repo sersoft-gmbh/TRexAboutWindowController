@@ -9,6 +9,12 @@
 import Foundation
 import Cocoa
 
+#if !swift(>=4.2)
+fileprivate extension NSAttributedString {
+    typealias Key = NSAttributedStringKey
+}
+#endif
+
 open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     @objc dynamic public var appName = ""
     @objc dynamic public var appVersion = ""
@@ -21,7 +27,7 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     
     open var appURL: URL?
     
-    @IBOutlet public var contentView: NSView!
+    @IBOutlet public var contentView: NSBox!
     @IBOutlet public var visitWebsiteButton: NSButton!
     @IBOutlet public var supportButton: NSButton!
     @IBOutlet public var appNameLabel: NSTextField!
@@ -34,15 +40,24 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     @objc dynamic internal var currentText: NSAttributedString?
     
     public convenience init() {
+        #if swift(>=4.2)
+        self.init(windowNibName: "PFAboutWindow")
+        #else
         self.init(windowNibName: .init(rawValue: "PFAboutWindow"))
+        #endif
     }
     
     override open func windowDidLoad() {
         super.windowDidLoad()
-        
-        window?.backgroundColor = NSColor.white
-        contentView.layer?.cornerRadius = 10.0
-        contentView.layer?.backgroundColor = NSColor.white.cgColor
+
+        if #available(macOS 10.14, *) {
+            window?.backgroundColor = .windowBackgroundColor
+            contentView.fillColor = .windowBackgroundColor
+        } else {
+            window?.backgroundColor = .white
+            contentView.fillColor = .white
+        }
+        contentView.cornerRadius = 10
         
         if appName.isEmpty {
             appName = valueFromInfoDict("CFBundleName")
@@ -57,24 +72,22 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
         if appCopyright == nil {
             let color: NSColor
             if #available(macOS 10.10, *) {
-                color = NSColor.tertiaryLabelColor
+                color = .tertiaryLabelColor
             } else {
-                color = NSColor.lightGray
+                color = .lightGray
             }
             let font = NSFont.systemFont(ofSize: 11)
-            let attribs: [NSAttributedStringKey: Any] = [.foregroundColor: color,
-                                                         .font: font]
-            appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes:attribs)
+            let attribs: [NSAttributedString.Key: Any] = [.foregroundColor: color,
+                                                          .font: font]
+            appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes: attribs)
         }
         
         if appCredits == nil {
-            let creditsRTF = Bundle.main.path(forResource: "Credits", ofType: "rtf")
-            appCredits = creditsRTF.flatMap { NSAttributedString(path: $0, documentAttributes: nil) }
+            appCredits = loadRTFAttributedString(named: "Credits")
         }
         
         if appEULA == nil {
-            let eulaRTF = Bundle.main.path(forResource: "EULA", ofType: "rtf")
-            appEULA = eulaRTF.flatMap { NSAttributedString(path: $0, documentAttributes: nil) }
+            appEULA = loadRTFAttributedString(named: "EULA")
         }
         
         currentText = appCopyright
@@ -122,6 +135,20 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
         let dictionary = Bundle.main.infoDictionary
         let result = dictionary?[string] as? String
         return result ?? String()
+    }
+
+    private func loadRTFAttributedString(named name: String) -> NSAttributedString? {
+        guard let url = Bundle.main.url(forResource: name, withExtension: "rtf") else { return nil }
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any]
+        if #available(macOS 10.14, *) {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: NSColor.textColor
+            ]
+            options = [.defaultAttributes: attributes]
+        } else {
+            options = [:]
+        }
+        return try? NSAttributedString(url: url, options: options, documentAttributes: nil)
     }
     
     private func expandWindow() {
