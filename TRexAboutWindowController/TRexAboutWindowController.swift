@@ -37,7 +37,11 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     @IBOutlet public var eulaButton: NSButton!
     @IBOutlet public var creditsButton: NSButton!
     
-    @objc dynamic internal var currentText: NSAttributedString?
+    @objc dynamic var currentText: NSAttributedString?
+    private var currentButton: NSButton? {
+        willSet { currentButton?.state = .off }
+        didSet { currentButton?.state = .on }
+    }
     
     public convenience init() {
         #if swift(>=4.2)
@@ -89,7 +93,8 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
         if appEULA == nil {
             appEULA = loadRTFAttributedString(named: "EULA")
         }
-        
+
+        currentButton = copyrightButton
         currentText = appCopyright
 
         supportButton.title = NSLocalizedString("Support", comment: "TRexAboutWindowController")
@@ -114,16 +119,19 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     }
 
     @IBAction func showCopyright(_ sender: Any) {
+        currentButton = copyrightButton
         collapseWindow()
         currentText = appCopyright
     }
     
     @IBAction func showEULA(_ sender: Any) {
+        currentButton = eulaButton
         expandWindow()
         currentText = appEULA
     }
     
     @IBAction func showCredits(_ sender: Any) {
+        currentButton = creditsButton
         expandWindow()
         currentText = appCredits
     }
