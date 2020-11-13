@@ -81,8 +81,7 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
                 color = .lightGray
             }
             let font = NSFont.systemFont(ofSize: 11)
-            let attribs: [NSAttributedString.Key: Any] = [.foregroundColor: color,
-                                                          .font: font]
+            let attribs: [NSAttributedString.Key: Any] = [.foregroundColor: color, .font: font]
             appCopyright = NSAttributedString(string: valueFromInfoDict("NSHumanReadableCopyright"), attributes: attribs)
         }
         
@@ -114,7 +113,7 @@ open class TRexAboutWindowController: NSWindowController, NSWindowDelegate {
     }
 
     @IBAction func sendSupportMail(_ sender: Any) {
-        guard let supportMail = supportEmail, let url = URL(string: "mailto:\(supportMail)") else { return }
+        guard let url = supportEmail.flatMap({ URL(string: "mailto:\($0)") }) else { return }
         NSWorkspace.shared.open(url)
     }
 
